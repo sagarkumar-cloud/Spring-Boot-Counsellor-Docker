@@ -1,0 +1,36 @@
+version: "3"
+
+services:
+  application:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: spring-boot-mysql-app
+    ports:
+      - "8080:8080"
+    networks:
+      - springboot-db-net
+    depends_on:
+      - mysqldb
+    volumes:
+      - /data/springboot-app
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysqldb:3306/sbms?useSSL=false&allowPublicKeyRetrieval=true
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+
+  mysqldb:
+    image: mysql:8.0
+    networks:
+      - springboot-db-net
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=sbms
+    volumes:
+      - /data/mysql
+
+networks:
+  springboot-db-net:
