@@ -12,13 +12,14 @@ services:
       - springboot-db-net
     depends_on:
       - mysqldb
-    volumes:
-      - /data/springboot-app
     environment:
       - SPRING_DATASOURCE_URL=jdbc:mysql://mysqldb:3306/sbms?useSSL=false&allowPublicKeyRetrieval=true
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=root
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    # Optional: Mount a folder inside the container if needed
+    # volumes:
+    #   - ./app-data:/app/data
 
   mysqldb:
     image: mysql:8.0
@@ -30,7 +31,11 @@ services:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=sbms
     volumes:
-      - /data/mysql
+      - mysql-data:/var/lib/mysql  # Named volume for persistent DB storage
 
 networks:
   springboot-db-net:
+
+volumes:
+  mysql-data:
+
