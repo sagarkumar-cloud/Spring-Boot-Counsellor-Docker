@@ -1,96 +1,85 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Bootstrap demo</title>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7"
-	crossorigin="anonymous">
-	
-		<link th:href="@{/css/add-enquiry.css}" rel="stylesheet"/>
-	
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Add Enquiry</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link th:href="@{/css/add-enquiry.css}" rel="stylesheet"/>
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand text-white" href="/dashboard">Dashboard</a>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="/addEnq">Add Enquiry</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="/viewEnq">View Enquiry</a>
-                </li>
-            </ul>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/dashboard">Dashboard</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-            <form class="d-flex" role="search" th:action="@{/logout}" method="get">
-                <button class="btn btn-outline-light" type="submit">Logout</button>
-            </form>
-        </div>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link" href="/addEnq">Add Enquiry</a></li>
+        <li class="nav-item"><a class="nav-link" href="/viewEnq">View Enquiry</a></li>
+      </ul>
+      <form class="d-flex" th:action="@{/logout}" method="get">
+        <button class="btn btn-outline-light" type="submit">Logout</button>
+      </form>
     </div>
+  </div>
 </nav>
-	<div class="container">
-		<p th:text="${emsg}" style="color: red;" />
-		<p th:text="${smsg}" style="color: green;" />
-		<form th:object="${enquiryDto}" th:action="@{/addEnquiry}"
-			method="post">
-			<table>
-				<tr>
-					<td>Name :</td>
-					<td><input type="text" th:field="*{name}" class="form control"required>
-					     <input type="hidden" th:field="*{enquiryId}">
-					</td>
-				</tr>
-				<tr>
-					<td>Phno :</td>
-					<td><input type="number" th:field="*{phno}"
-						class="form control" required></td>
-				</tr>
-				<tr>
-					<td>Class Mode :</td>
-					<td><select th:field="*{classMode}">
-							<option value="">-Select-</option>
-							<option value="Online">Online</option>
-							<option value="Offline">Offline</option>
-					</select></td>
-				</tr>
-				<tr>
-					<td>Course :</td>
-					<td><select th:field="*{course}" required>
-							<option value="">-Select-</option>
-							<option value="Java">Java</option>
-							<option value="Paython">Paython</option>
-							<option value="DotNet">DotNet</option>
-							<option value="Devops">Devops</option>
-							<option value="Mern-stack">Mern-stack</option>
-							<option value="Database">Database</option>
-					</select></td>
-				</tr>
-				<tr>
-					<td>Status :</td>
-					<td><select th:field="*{status}" required >
-							<option value="">-Select-</option>
-							<option value="Open">Open</option>
-							<option value="Enrolled">Enrolled</option>
-							<option value="Lost">Lost</option>
-					</select></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td><input type="submit" value="submit"
-						class="btn btn-primary"></td>
-				</tr>
-			</table>
-		</form>
-	</div>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
-		crossorigin="anonymous"></script>
+
+<div class="container mt-4">
+  <p th:text="${emsg}" class="text-danger"></p>
+  <p th:text="${smsg}" class="text-success"></p>
+
+  <form th:object="${enquiryDto}" th:action="@{/addEnquiry}" method="post">
+    <input type="hidden" th:field="*{enquiryId}">
+    <div class="row g-3">
+      <div class="col-md-6">
+        <label class="form-label">Name</label>
+        <input type="text" th:field="*{name}" class="form-control" required>
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Phone</label>
+        <input type="number" th:field="*{phno}" class="form-control" required>
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Class Mode</label>
+        <select th:field="*{classMode}" class="form-select">
+          <option value="">-Select-</option>
+          <option value="Online">Online</option>
+          <option value="Offline">Offline</option>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Course</label>
+        <select th:field="*{course}" class="form-select" required>
+          <option value="">-Select-</option>
+          <option value="Java">Java</option>
+          <option value="Paython">Paython</option>
+          <option value="DotNet">DotNet</option>
+          <option value="Devops">Devops</option>
+          <option value="Mern-stack">Mern-stack</option>
+          <option value="Database">Database</option>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Status</label>
+        <select th:field="*{status}" class="form-select" required>
+          <option value="">-Select-</option>
+          <option value="Open">Open</option>
+          <option value="Enrolled">Enrolled</option>
+          <option value="Lost">Lost</option>
+        </select>
+      </div>
+      <div class="col-12 mt-3">
+        <button type="submit" class="btn btn-primary w-100">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -1,40 +1,54 @@
- 
+/* Navbar styling */
+.navbar {
+  background: linear-gradient(to right, #1f4037, #99f2c8);
+}
 
-        .navbar {
-            background: linear-gradient(to right, #1f4037, #99f2c8);
-        }
+.navbar .nav-link,
+.navbar .navbar-brand {
+  color: white !important;
+  font-weight: 500;
+}
 
-        .navbar .nav-link,
-        .navbar .navbar-brand {
-            color: white !important;
-            font-weight: 500;
-        }
+.navbar .nav-link:hover {
+  color: #ffd700 !important;
+}
 
-        .navbar .nav-link:hover {
-            color: #ffd700 !important;
-        }
-
-       .dashboard-card {
-    color: white;
-    padding: 30px 20px;
-    border-radius: 15px;
-    margin-bottom: 25px;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
-    transition: transform 0.3s ease;
+/* Dashboard card styles */
+.dashboard-card {
+  color: white;
+  padding: 30px 20px;
+  border-radius: 15px;
+  margin-bottom: 25px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease;
 }
 
 .dashboard-card:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 
 .dashboard-title {
-    font-size: 1.8rem;
-    font-weight: 700;
-    margin-bottom: 15px;
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 15px;
 }
 
 .dashboard-value {
-    font-size: 3.5rem;
-    font-weight: bold;
+  font-size: 3rem;
+  font-weight: bold;
 }
-       
+
+/* Optional: Adjust for smaller screens */
+@media (max-width: 576px) {
+  .dashboard-title {
+    font-size: 1.3rem;
+  }
+
+  .dashboard-value {
+    font-size: 2.5rem;
+  }
+
+  .dashboard-card {
+    padding: 20px 15px;
+  }
+}

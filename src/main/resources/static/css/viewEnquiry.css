@@ -1,0 +1,27 @@
+body {
+	background-color: #f8f9fa;
+	padding-top: 60px;
+}
+
+.container {
+	background-color: white;
+	padding: 30px;
+	border-radius: 10px;
+	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+h3 {
+	margin-bottom: 25px;
+	font-weight: 600;
+	color: #333;
+}
+
+.form-select, .btn {
+	margin-top: 8px;
+}
+
+@media ( max-width : 576px) {
+	.form-label {
+		font-size: 14px;
+	}
+}

@@ -26,7 +26,7 @@ public class CounserllorController {
 		this.enquiryService = enquiryService;
 	}
 
-	@GetMapping("/index")
+	@GetMapping("/sagar")
 	public String login(Model model) {
 		LoginDto loginDto = new LoginDto();
 		model.addAttribute("loginDto", loginDto);
@@ -86,6 +86,6 @@ public class CounserllorController {
 	public String logout(Model model,HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
 		session.invalidate();
-		return "redirect:/";
+		return "redirect:sagar";
 	}
 }
